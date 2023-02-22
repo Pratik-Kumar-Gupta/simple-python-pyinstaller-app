@@ -4,7 +4,8 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'python:3.8-slim-buster'
+                    docker { image 'python:3' }
+                    // image 'python:3.8-slim-buster'
                 }
             }
             steps {
@@ -18,6 +19,7 @@ pipeline {
                 }
             }
             steps {
+                sh 'pip --version'
                 sh 'py.test --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
             }
             post {
@@ -34,6 +36,7 @@ pipeline {
             }
             steps {
                 // sh 'virtualenv venv && . venv/bin/activate && pip3 install pyinstaller && pyinstaller --onefile sources/add2vals.py'
+                sh 'pip --version'
                 sh 'pip3 install pyinstaller && pyinstaller --onefile sources/add2vals.py'
             }
             post {
