@@ -33,7 +33,8 @@ pipeline {
                 }
             }
             steps {
-                sh 'virtualenv venv && . venv/bin/activate && pip3 install pyinstaller && pyinstaller --onefile sources/add2vals.py'
+                sh "python3 -m venv venv && source venv/bin/activate && pip3 install pyinstaller && pyinstaller --onefile sources/add2vals.py"
+                // sh 'virtualenv venv && . venv/bin/activate && pip3 install pyinstaller && pyinstaller --onefile sources/add2vals.py'
                 // sh 'pyinstaller --onefile sources/add2vals.py'
             }
             post {
